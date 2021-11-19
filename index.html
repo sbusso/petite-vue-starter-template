@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Petite Vue Starter</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/daisyui/1.16.2/full.min.css"/>
+  </head>
+  <body class="container mx-auto p-20">
+
+    <div v-scope>
+      <h1>{{ message }}</h1>
+      <p>{{ store.count }}</p>
+      <button class="btn btn-primary" @click="store.inc">increment</button>
+    </div>
+
+    <script type="module">
+      import {createApp, reactive} from "https://unpkg.com/petite-vue?module";
+      const store = reactive({
+        count: 0,
+        inc() {
+          this.count++;
+        }
+      });
+
+      createApp({
+        // share it with app scopes
+        message: "hello world",
+        store
+      }).mount();
+    </script>
+  </body>
+</html>
